@@ -14,6 +14,7 @@
     <activity
         android:name="com.mygdx.slide.android.AndroidLauncher"
         android:label="Chess for Rook-ies"
+        android:screenOrientation="landscape"
         android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
         android:exported="true">
         <intent-filter>

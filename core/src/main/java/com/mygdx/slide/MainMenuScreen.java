@@ -1,6 +1,7 @@
 package com.mygdx.slide;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -8,10 +9,12 @@ public class MainMenuScreen implements Screen {
 
     final Chess game;
 
-//    ButtonLayout mainMenu;
+    ButtonLayout mainMenu;
 
     public MainMenuScreen(Chess chess) {
         game = chess;
+        mainMenu = new ButtonLayout(game.camera, game.manager, game.mediumFont);
+        mainMenu.loadFromJson("mainmenu.json");
     }
 
     @Override
@@ -22,25 +25,25 @@ public class MainMenuScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        //game.batch.begin();
-        //game.batch.draw(game.manager.get("BG.png", Texture.class), 0, 0, 800, 480, 0,0, 1000, 750, false, true);
-        //game.batch.end();
+        game.batch.begin();
+        game.batch.draw(game.manager.get("BG.png", Texture.class), 0, 20, 800, 500, 0,0, 800, 480, false, true);
+        game.batch.end();
 
         game.textBatch.begin();
         game.bigFont.draw(game.textBatch,"Chess for Rook-ies", 30, 480 - 60);
-        game.smallFont.draw(game.textBatch,"(c) Puig Castellar 2025", 160, 480 - 420);
+        game.smallFont.draw(game.textBatch,"(c) Puig Castellar 2025", 100, 480 - 420);
         game.textBatch.end();
 
-//        mainMenu.render(game.batch, game.textBatch);
-//
-//
+        mainMenu.render(game.batch, game.textBatch);
+
+
 //        // Start the game!
-//        if(mainMenu.consumeRelease("Start"))
-//        {
-//            game.lives = 3;
-//            game.setScreen(new GameScreen(game));
-//            this.dispose();
-//        }
+        if(mainMenu.consumeRelease("Start"))
+        {
+
+            game.setScreen(new MainMenuScreen(game));
+            this.dispose();
+        }
 
     }
 

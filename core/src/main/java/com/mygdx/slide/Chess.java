@@ -19,6 +19,13 @@ public class Chess extends Game {
 
     @Override
     public void create() {
+
+        manager = new AssetManager();
+        batch = new SpriteBatch();
+        textBatch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
+        shapeRenderer.setAutoShapeType(true);
+
         FreeTypeFontGenerator generator =
             new FreeTypeFontGenerator(Gdx.files.internal("8bitOperatorPlus-Bold.ttf"));
 
@@ -53,8 +60,8 @@ public class Chess extends Game {
         textCamera.translate(-400,-240);
 
         textBatch.setProjectionMatrix(textCamera.projection);
-        //this.setScreen(new LoadingScreen(this));
-        this.setScreen(new MainMenuScreen(this));
+        this.setScreen(new LoadingScreen(this));
+        //this.setScreen(new MainMenuScreen(this));
     }
 
     @Override

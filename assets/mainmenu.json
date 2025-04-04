@@ -1,0 +1,14 @@
+{
+  "buttons": [
+    {
+      x: 310
+      y: 350
+      width: 200
+      height: 100
+      action: Start
+      "text": "Jugar!"
+      "image_on": "gui/Button-on.png"
+      "image_off": "gui/Button-off.png"
+    }
+  ]
+}
