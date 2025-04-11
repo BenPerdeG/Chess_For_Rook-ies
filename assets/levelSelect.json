@@ -1,0 +1,85 @@
+{
+  "buttons": [
+    {
+      x: 200
+      y: 175
+      width: 75
+      height: 75
+      action: Nivel_1
+      "image_on": "gui/lvl1.png"
+      "image_off": "gui/lvl1.png"
+    },{
+      x: 275,
+      y: 175,
+      width: 75
+      height: 75,
+      action: Nivel_2,
+      "image_on": "gui/lvl2.png"
+      "image_off": "gui/lvl2.png"
+    },{
+      x: 350,
+      y: 175,
+      width: 75
+      height: 75
+      action: Nivel_3
+      "image_on": "gui/lvl3.png"
+      "image_off": "gui/lvl3.png"
+    },{
+      x: 425,
+      y: 175,
+      width: 75
+      height: 75,
+      action: Nivel_4,
+      "image_on": "gui/lvl4.png"
+      "image_off": "gui/lvl4.png"
+    },{
+      x: 500,
+      y: 175,
+      width: 75
+      height: 75
+      action: Nivel_5
+      "image_on": "gui/lvl5.png"
+      "image_off": "gui/lvl5.png"
+    },{
+      x: 200
+      y: 250
+      width: 75
+      height: 75,
+      action: Nivel_6,
+      "image_on": "gui/lvl6.png"
+      "image_off": "gui/lvl6.png"
+    },{
+      x: 275
+      y: 250
+      width: 75
+      height: 75
+      action: Nivel_7
+      "image_on": "gui/lvl7.png"
+      "image_off": "gui/lvl7.png"
+    },{
+      x: 350
+      y: 250
+      width: 75
+      height: 75,
+      action: Nivel_8,
+      "image_on": "gui/lvl8.png"
+      "image_off": "gui/lvl8.png"
+    },{
+      x: 425
+      y: 250
+      width: 75
+      height: 75
+      action: Nivel_9
+      "image_on": "gui/lvl9.png"
+      "image_off": "gui/lvl9.png"
+    },{
+      x: 500
+      y: 250
+      width: 75
+      height: 75,
+      action: Nivel_10,
+      "image_on": "gui/lvl10.png"
+      "image_off": "gui/lvl10.png"
+    }
+  ]
+}

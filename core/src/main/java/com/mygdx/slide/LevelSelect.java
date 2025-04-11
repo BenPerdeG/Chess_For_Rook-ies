@@ -1,20 +1,16 @@
 package com.mygdx.slide;
 
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
-public class MainMenuScreen implements Screen {
+public class LevelSelect implements Screen {
+    Chess game;
+    ButtonLayout levelSelect;
 
-    final Chess game;
-
-    ButtonLayout mainMenu;
-
-    public MainMenuScreen(Chess chess) {
-        game = chess;
-        mainMenu = new ButtonLayout(game.camera, game.manager, game.mediumFont);
-        mainMenu.loadFromJson("mainmenu.json");
+    public LevelSelect(Chess game) {
+        this.game= game;
+        levelSelect = new ButtonLayout(game.camera, game.manager, game.mediumFont);
+        levelSelect.loadFromJson("levelSelect.json");
     }
 
     @Override
@@ -24,21 +20,20 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
         game.batch.begin();
         game.batch.draw(game.manager.get("BG.png", Texture.class), -10, 20, 800, 500, 0,0, 800, 480, false, true);
         game.batch.end();
 
         game.textBatch.begin();
-        game.bigFont.draw(game.textBatch,"Chess for Rook-ies", 30, 480 - 60);
+        game.bigFont.draw(game.textBatch,"Level Select", 30, 480 - 60);
         game.smallFont.draw(game.textBatch,"(c) Puig Castellar 2025", 100, 480 - 420);
         game.textBatch.end();
 
-        mainMenu.render(game.batch, game.textBatch);
+        levelSelect.render(game.batch, game.textBatch);
 
 
 //        // Start the game!
-        if(mainMenu.consumeRelease("Start"))
+        if(levelSelect.consumeRelease("Start"))
         {
 
             game.setScreen(new LevelSelect(game));

@@ -31,6 +31,11 @@ public class LoadingScreen implements Screen {
         manager.load("libgdx.png", Texture.class);
         manager.load("BG.png", Texture.class);
 
+        for(int i =1; i<11;i++){
+            manager.load("gui/lvl"+i+".png", Texture.class);
+        }
+
+
         //GUI
         manager.load("gui/Button-off.png", Texture.class);
         manager.load("gui/Button-on.png", Texture.class);
@@ -43,25 +48,17 @@ public class LoadingScreen implements Screen {
         manager.load("gui/Pause-off.png", Texture.class);
         manager.load("gui/Pause-on.png", Texture.class);
 
-
-
-
-
-
-
-
-
-
+        manager.load("gui/pointLeft.png", Texture.class);
+        manager.load("gui/pointUP.png", Texture.class);
+        manager.load("gui/pointRight.png", Texture.class);
+        manager.load("gui/pointDown.png", Texture.class);
 
         manager.load("Piezas/B_Bishop.png",Texture.class);
         manager.load("Piezas/B_Pawn.png",Texture.class);
         manager.load("Piezas/B_Queen.png",Texture.class);
         manager.load("Piezas/B_Rook.png",Texture.class);
-        //manager.load("Piezas/BlackPieces-Sheet.png",Texture.class);
         manager.load("Piezas/BlackPieces.png",Texture.class);
-        //manager.load("Piezas/BlackPiecesWood-Sheet.png",Texture.class);
         manager.load("Piezas/BlackPieces_Simplified.png",Texture.class);
-        //manager.load(" Piezas/BlackPieces_Wood.png",Texture.class);
         manager.load("Piezas/BlackPieces_WoodSimplified.png",Texture.class);
         manager.load("Piezas/W_Bishop.png",Texture.class);
         manager.load("Piezas/W_King.png",Texture.class);
@@ -69,11 +66,8 @@ public class LoadingScreen implements Screen {
         manager.load("Piezas/W_Pawn.png",Texture.class);
         manager.load("Piezas/W_Queen.png",Texture.class);
         manager.load("Piezas/W_Rook.png",Texture.class);
-        //manager.load(" Piezas/WhitePieces-Sheet.png",Texture.class);
         manager.load("Piezas/WhitePieces.png",Texture.class);
-        //manager.load("Piezas/WhitePiecesWood-Sheet.png",Texture.class);
         manager.load("Piezas/WhitePieces_Simplified.png",Texture.class);
-        //manager.load("Piezas/WhitePieces_Wood.png",Texture.class);
         manager.load("Piezas/WhitePieces_WoodSimplified.png",Texture.class);
 
         loadProgress = 0f;
