@@ -10,7 +10,7 @@ public class LevelJson
     private byte tileMap[][];
 
     private ArrayList<EnemyJson> enemies;
-    private ArrayList<CollectableJson> collectables;
+
 
     public LevelJson()
     {
@@ -60,14 +60,6 @@ public class LevelJson
     public void addEnemy(EnemyJson e)
     {
         enemies.add(e);
-    }
-
-    public ArrayList<CollectableJson> getCollectables() {
-        return collectables;
-    }
-
-    public void setCollectables(ArrayList<CollectableJson> collectables) {
-        this.collectables = collectables;
     }
 
 }
