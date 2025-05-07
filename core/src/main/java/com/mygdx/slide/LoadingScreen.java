@@ -24,8 +24,9 @@ public class LoadingScreen implements Screen {
         // Add assets for loading
 
         // Tableros
-        for(int i = 1; i < 6; i++)
-            manager.load("Tableros/board_persp_0"+i+".png", Texture.class);
+        manager.load("Tableros/light-tile.png", Texture.class);
+        manager.load("Tableros/dark-tile.png", Texture.class);
+        manager.load("Tableros/wall-tile.png", Texture.class);
 
         // Background image
         manager.load("libgdx.png", Texture.class);

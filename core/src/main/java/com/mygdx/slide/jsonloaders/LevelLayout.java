@@ -1,17 +1,15 @@
 package com.mygdx.slide.jsonloaders;
 
 public class LevelLayout {
-    private int mapWidth;
-    private int mapHeight;
+    int mapWidth;
+    int mapHeight;
+    byte[][] tileMap;
+    int playerX;
+    int playerY;
+    int kingX;
+    int kingY;
 
-    private byte tileMap[][];
-
-
-    public LevelLayout() {
-    }
-    public LevelLayout(byte[][] tileMap) {
-        this.tileMap = tileMap;
-    }
+    public LevelLayout() {}
 
     public byte[][] getTileMap() {
         return tileMap;
@@ -23,5 +21,21 @@ public class LevelLayout {
 
     public int getMapHeight() {
         return mapHeight;
+    }
+
+    public int getPlayerX() {
+        return playerX;
+    }
+
+    public int getPlayerY() {
+        return playerY;
+    }
+
+    public int getKingX() {
+        return kingX;
+    }
+
+    public int getKingY() {
+        return kingY;
     }
 }

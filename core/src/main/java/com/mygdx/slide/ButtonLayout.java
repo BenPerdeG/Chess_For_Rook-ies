@@ -168,6 +168,42 @@ public class ButtonLayout implements InputProcessor {
         textBatch.end();
     }
 
+    public void update() {
+        // Resetear estados temporales
+        for (Button button : buttons.values()) {
+            // Mantenemos pressed para los botones mantenidos
+            button.pushes = 0;
+            button.releases = 0;
+        }
+
+        // Procesar entradas táctiles continuas (para drag)
+        for (int pointer : pointers.keySet()) {
+            if (Gdx.input.isTouched(pointer)) {
+                // Actualizar posición del toque
+                Vector3 touchPos = new Vector3(Gdx.input.getX(pointer), Gdx.input.getY(pointer), 0);
+                camera.unproject(touchPos);
+
+                // Verificar si sigue sobre el mismo botón
+                String action = pointers.get(pointer);
+                Button button = buttons.get(action);
+                if (button != null) {
+                    button.pressed = button.rect.contains(touchPos.x, touchPos.y);
+                    button.debug_x = touchPos.x;
+                    button.debug_y = touchPos.y;
+                }
+            }
+        }
+    }
+
+    // Y necesitaríamos este método adicional para limpiar estados
+    public void clearTempStates() {
+        for (Button button : buttons.values()) {
+            button.pushes = 0;
+            button.releases = 0;
+        }
+    }
+
+
     @Override
     public boolean keyDown(int keycode) {
         return false;
