@@ -10,40 +10,40 @@
       image_off: "gui/Pause-off.png"
     },
     {
-      x: 630
-      y: 360
-      width: 80
-      height: 80,
-      action: Left
-      image_on: "gui/Left-on.png",
-      image_off: "gui/Left-off.png"
-    },
-    {
       x: 490
       y: 360
       width: 80
+      height: 80,
+      action: Left,
+      image_on: "gui/pointLeft.png",
+      image_off: "gui/pointLeft.png"
+    },
+    {
+      x: 650
+      y: 360
+      width: 80
       height: 80
-      action: Right
-      image_on: "gui/Right-on.png",
-      image_off: "gui/Right-off.png"
+      action: Right,
+      image_on: "gui/pointRight.png",
+      image_off: "gui/pointRight.png"
     },
     {
       x: 570
       y: 260
       width: 80
       height: 80
-      action: Up
-      image_on: "gui/Jump-on.png",
-      image_off: "gui/Jump-off.png"
+      action: Up,
+      image_on: "gui/pointUp.png",
+      image_off: "gui/pointUp.png"
     }
     {
       x: 570
-      y: 370
+      y: 360
       width: 80
       height: 80
       action: Down
-      image_on: "gui/Jump-on.png",
-      image_off: "gui/Jump-off.png"
+      image_on: "gui/pointDown.png",
+      image_off: "gui/pointDown.png"
     }
   ]
 }

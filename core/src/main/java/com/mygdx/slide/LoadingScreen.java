@@ -30,6 +30,7 @@ public class LoadingScreen implements Screen {
         // Background image
         manager.load("libgdx.png", Texture.class);
         manager.load("BG.png", Texture.class);
+        manager.load("fallback.png", Texture.class);
 
         for(int i =1; i<11;i++){
             manager.load("gui/lvl"+i+".png", Texture.class);
@@ -39,20 +40,12 @@ public class LoadingScreen implements Screen {
         //GUI
         manager.load("gui/Button-off.png", Texture.class);
         manager.load("gui/Button-on.png", Texture.class);
-        manager.load("gui/Left-off.png", Texture.class);
-        manager.load("gui/Left-on.png", Texture.class);
-        manager.load("gui/Right-off.png", Texture.class);
-        manager.load("gui/Right-on.png", Texture.class);
-        manager.load("gui/Jump-off.png", Texture.class);
-        manager.load("gui/Jump-on.png", Texture.class);
-        manager.load("gui/Pause-off.png", Texture.class);
-        manager.load("gui/Pause-on.png", Texture.class);
-
         manager.load("gui/pointLeft.png", Texture.class);
-        manager.load("gui/pointUP.png", Texture.class);
         manager.load("gui/pointRight.png", Texture.class);
         manager.load("gui/pointDown.png", Texture.class);
-
+        manager.load("gui/pointUp.png", Texture.class);
+        manager.load("gui/Pause-off.png", Texture.class);
+        manager.load("gui/Pause-on.png", Texture.class);
         manager.load("Piezas/B_Bishop.png",Texture.class);
         manager.load("Piezas/B_Pawn.png",Texture.class);
         manager.load("Piezas/B_Queen.png",Texture.class);

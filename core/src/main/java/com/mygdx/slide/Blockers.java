@@ -1,5 +1,6 @@
 package com.mygdx.slide;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -10,7 +11,12 @@ public class Blockers extends GameEntity {
     private Vector2 position;
 
     public Blockers(AssetManager manager, String texturePath, int x, int y) {
-        this.texture = manager.get(texturePath, Texture.class);
+        if (!manager.isLoaded(texturePath)) {
+            Gdx.app.error("Blockers", "Textura no cargada: " + texturePath);
+            texture = new Texture("fallback.png");
+        } else {
+            texture = manager.get(texturePath, Texture.class);
+        }
         this.position = new Vector2(x, y);
     }
 
