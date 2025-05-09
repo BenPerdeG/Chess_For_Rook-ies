@@ -116,22 +116,23 @@ public class Player extends GameEntity {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        float aspectRatio = (float)currentFrame.getWidth() / currentFrame.getHeight();
+        float drawWidth = TileMap.TILE_SIZE;
+        float drawHeight = TileMap.TILE_SIZE / aspectRatio;
+
         batch.draw(currentFrame,
             position.x * TileMap.TILE_SIZE,
-            position.y * TileMap.TILE_SIZE,
-            TileMap.TILE_SIZE,
-            TileMap.TILE_SIZE,
+            position.y * TileMap.TILE_SIZE + (TileMap.TILE_SIZE - drawHeight)/2,
+            drawWidth,
+            drawHeight,
             0, 0,
             currentFrame.getWidth(),
             currentFrame.getHeight(),
-            false, true); // flipY = true
+            false, true);
     }
-    // Métodos auxiliares para colisiones
+
     public Vector2 getPosition() {
         return position;
     }
 
-    public boolean isSliding() {
-        return state == State.SLIDING;
-    }
 }

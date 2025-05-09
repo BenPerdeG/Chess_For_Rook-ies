@@ -82,7 +82,7 @@ public class Chess extends Game {
             LevelLayout nextLevel = LevelJsonLoader.loadLevel("level" + currentLevel + ".json");
             setScreen(new Level(this, nextLevel));
         } else {
-            setScreen(new VictoryScreen(this)); // Necesitarás crear esta pantalla
+            setScreen(new VictoryScreen(this));
         }
     }
 }

@@ -22,16 +22,21 @@ public class Blockers extends GameEntity {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        float aspectRatio = (float)texture.getWidth() / texture.getHeight();
+        float drawWidth = TileMap.TILE_SIZE;
+        float drawHeight = TileMap.TILE_SIZE / aspectRatio;
+
         batch.draw(texture,
             position.x * TileMap.TILE_SIZE,
-            position.y * TileMap.TILE_SIZE,
-            TileMap.TILE_SIZE,
-            TileMap.TILE_SIZE,
+            position.y * TileMap.TILE_SIZE + (TileMap.TILE_SIZE - drawHeight)/2,
+            drawWidth,
+            drawHeight,
             0, 0,
             texture.getWidth(),
             texture.getHeight(),
             false, true);
     }
+
     public Vector2 getPosition() {
         return position;
     }

@@ -89,39 +89,47 @@ public class Level implements Screen {
     private void draw() {
         game.batch.begin();
 
+        // 1. Dibujar tablero
         for (int y = 0; y < tileMap.height; y++) {
             for (int x = 0; x < tileMap.width; x++) {
                 boolean isLight = (x + y) % 2 == 0;
                 game.batch.draw(isLight ? lightTile : darkTile,
                     x * TILE_SIZE, y * TILE_SIZE,
                     TILE_SIZE, TILE_SIZE);
-
-                if (tileMap.tiles[y][x] == 1) {
-                    game.batch.draw(wallTile, x * TILE_SIZE, y * TILE_SIZE,
-                        TILE_SIZE, TILE_SIZE);
-                }
             }
         }
 
-        for (Blockers blocker : allyPieces) {
-            blocker.draw(game.batch, 1.0f);
-        }
-
-        player.draw(game.batch, 1.0f);
+        // 2. Dibujar rey (objetivo)
+        float kingAspect = (float)kingTexture.getWidth() / kingTexture.getHeight();
+        float kingHeight = TileMap.TILE_SIZE / kingAspect;
         game.batch.draw(kingTexture,
             nivel.getKingX() * TILE_SIZE,
-            nivel.getKingY() * TILE_SIZE,
-            TILE_SIZE,
-            TILE_SIZE,
+            nivel.getKingY() * TILE_SIZE + (TileMap.TILE_SIZE - kingHeight),
+            TileMap.TILE_SIZE,
+            kingHeight,
             0, 0,
             kingTexture.getWidth(),
             kingTexture.getHeight(),
-            false, true); // Invertir verticalmente
+            false, true);
+
         game.batch.end();
 
+        // 3. Dibujar piezas aliadas
+        game.batch.begin();
+        game.batch.enableBlending();
+        for (Blockers blocker : allyPieces) {
+            blocker.draw(game.batch, 1.0f);
+        }
+        game.batch.end();
+
+        // 4. Dibujar jugador
+        game.batch.begin();
+        player.draw(game.batch, 1.0f);
+        game.batch.end();
+
+        // Joypad
         joypad.render(game.batch, game.textBatch);
     }
-
     @Override public void show() {}
     @Override public void resize(int width, int height) {}
     @Override public void pause() {}

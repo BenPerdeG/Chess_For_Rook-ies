@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.slide.jsonloaders.LevelLayout;
 
 public class TileMap {
-    public static final int TILE_SIZE = 64;
+    public static final int TILE_SIZE = 50;
     int width;
     int height;
     byte tiles[][];
@@ -17,15 +17,7 @@ public class TileMap {
         this.manager = manager;
         this.batch = batch;
     }
-
-    public boolean isWalkable(int x, int y) {
-
-        if(x < 0 || x >= 8 || y < 0 || y >= 8) {
-            return false;
-        }
-        return tiles[y][x] == 0;
-    }
-
+    
 
     void loadFromLevel(LevelLayout l)
     {
@@ -47,10 +39,6 @@ public class TileMap {
         }
     }
 
-    // En TileMap.java
-    public boolean hasAllyPiece(int x, int y) {
-        return x >= 0 && x < 8 && y >= 0 && y < 8 && tiles[y][x] == 1;
-    }
 
 
 }

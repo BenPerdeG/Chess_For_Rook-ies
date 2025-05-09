@@ -46,22 +46,10 @@ public class LoadingScreen implements Screen {
         manager.load("gui/pointUp.png", Texture.class);
         manager.load("gui/Pause-off.png", Texture.class);
         manager.load("gui/Pause-on.png", Texture.class);
-        manager.load("Piezas/B_Bishop.png",Texture.class);
         manager.load("Piezas/B_Pawn.png",Texture.class);
-        manager.load("Piezas/B_Queen.png",Texture.class);
         manager.load("Piezas/B_Rook.png",Texture.class);
-        manager.load("Piezas/BlackPieces.png",Texture.class);
-        manager.load("Piezas/BlackPieces_Simplified.png",Texture.class);
-        manager.load("Piezas/BlackPieces_WoodSimplified.png",Texture.class);
-        manager.load("Piezas/W_Bishop.png",Texture.class);
         manager.load("Piezas/W_King.png",Texture.class);
-        manager.load("Piezas/W_Knight.png",Texture.class);
-        manager.load("Piezas/W_Pawn.png",Texture.class);
-        manager.load("Piezas/W_Queen.png",Texture.class);
-        manager.load("Piezas/W_Rook.png",Texture.class);
-        manager.load("Piezas/WhitePieces.png",Texture.class);
-        manager.load("Piezas/WhitePieces_Simplified.png",Texture.class);
-        manager.load("Piezas/WhitePieces_WoodSimplified.png",Texture.class);
+
 
         loadProgress = 0f;
     }
