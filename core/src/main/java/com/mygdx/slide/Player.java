@@ -62,6 +62,7 @@ public class Player extends GameEntity {
         }
     }
 
+    // En Player.java
     private void startSlide(int dirX, int dirY) {
         if(state != State.IDLE) return;
 
@@ -74,10 +75,13 @@ public class Player extends GameEntity {
             int nextX = newX + dirX;
             int nextY = newY + dirY;
 
-            // Verificar colisión con bordes o obstáculos
-            if(!map.isWalkable(nextX, nextY)) {
+            // Verificar colisión con bordes, obstáculos o piezas aliadas
+            if(!map.isWalkable(nextX, nextY) ||
+                map.hasAllyPiece(nextX, nextY)) { // Necesitarás implementar este método
                 break;
             }
+
+            // Verificar si encontramos al rey enemigo (victoria)
 
             newX = nextX;
             newY = nextY;

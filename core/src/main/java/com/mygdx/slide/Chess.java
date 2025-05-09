@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.mygdx.slide.jsonloaders.LevelJsonLoader;
+import com.mygdx.slide.jsonloaders.LevelLayout;
 
 public class Chess extends Game {
     public ShapeRenderer shapeRenderer;
@@ -16,7 +18,8 @@ public class Chess extends Game {
     BitmapFont smallFont, mediumFont, bigFont;
     AssetManager manager;
     public OrthographicCamera camera, textCamera;
-
+    public int currentLevel = 1;
+    public static final int TOTAL_LEVELS = 10;
     @Override
     public void create() {
 
@@ -72,5 +75,14 @@ public class Chess extends Game {
     @Override
     public void dispose() {
         batch.dispose();
+    }
+    public void levelCompleted() {
+        currentLevel++;
+        if(currentLevel <= TOTAL_LEVELS) {
+            LevelLayout nextLevel = LevelJsonLoader.loadLevel("level" + currentLevel + ".json");
+            setScreen(new Level(this, nextLevel));
+        } else {
+            //setScreen(new VictoryScreen(this)); // Necesitarás crear esta pantalla
+        }
     }
 }

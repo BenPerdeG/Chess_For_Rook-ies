@@ -19,11 +19,13 @@ public class TileMap {
     }
 
     public boolean isWalkable(int x, int y) {
-        if(x < 0 || x >= width || y < 0 || y >= height) {
+
+        if(x < 0 || x >= 8 || y < 0 || y >= 8) {
             return false;
         }
         return tiles[y][x] == 0;
     }
+
 
     void loadFromLevel(LevelLayout l)
     {
@@ -44,5 +46,11 @@ public class TileMap {
             }
         }
     }
+
+    // En TileMap.java
+    public boolean hasAllyPiece(int x, int y) {
+        return x >= 0 && x < 8 && y >= 0 && y < 8 && tiles[y][x] == 1;
+    }
+
 
 }

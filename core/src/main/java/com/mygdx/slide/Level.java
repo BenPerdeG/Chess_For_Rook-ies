@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.slide.jsonloaders.LevelLayout;
 
 public class Level implements Screen {
@@ -37,6 +38,8 @@ public class Level implements Screen {
         joypad = new ButtonLayout(game.camera, game.manager, game.mediumFont);
         joypad.loadFromJson("joypad.json");
         player.setJoypad(joypad);
+        player.setInitialPosition(nivel.getPlayerX(), nivel.getPlayerY());
+
 
         // Cargar texturas de ajedrez
         lightTile = game.manager.get("Tableros/light-tile.png", Texture.class);
@@ -59,7 +62,11 @@ public class Level implements Screen {
 
     private void update(float delta) {
         player.act(delta);
-        joypad.update(); // Necesitarás implementar este método en ButtonLayout
+        joypad.update();
+
+        if(player.getPosition().epsilonEquals(new Vector2(nivel.getKingX(), nivel.getKingY()), 0.1f)) {
+            game.levelCompleted();
+        }
     }
 
     private void draw() {
@@ -102,4 +109,5 @@ public class Level implements Screen {
         darkTile.dispose();
         wallTile.dispose();
     }
+
 }
