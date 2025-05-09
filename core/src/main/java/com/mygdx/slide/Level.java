@@ -87,14 +87,24 @@ public class Level implements Screen {
     }
 
     private void draw() {
-        game.batch.begin();
+        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // 1. Dibujar tablero
+        // Definir offset para mover el tablero
+        final float boardOffsetX = 100f; // Mover a la derecha
+        final float boardOffsetY = 50f;  // Mover hacia abajo
+
+        // Guardar la matriz de transformación original
+        game.batch.begin();
+        game.batch.setTransformMatrix(game.batch.getTransformMatrix().translate(boardOffsetX, boardOffsetY, 0));
+
+        // 1. Dibujar tablero (ahora se dibujará con el offset aplicado)
         for (int y = 0; y < tileMap.height; y++) {
             for (int x = 0; x < tileMap.width; x++) {
                 boolean isLight = (x + y) % 2 == 0;
                 game.batch.draw(isLight ? lightTile : darkTile,
-                    x * TILE_SIZE, y * TILE_SIZE,
+                    x * TILE_SIZE,
+                    y * TILE_SIZE,
                     TILE_SIZE, TILE_SIZE);
             }
         }
@@ -106,28 +116,21 @@ public class Level implements Screen {
             nivel.getKingX() * TILE_SIZE,
             nivel.getKingY() * TILE_SIZE + (TileMap.TILE_SIZE - kingHeight),
             TileMap.TILE_SIZE,
-            kingHeight,
-            0, 0,
-            kingTexture.getWidth(),
-            kingTexture.getHeight(),
-            false, true);
-
-        game.batch.end();
+            kingHeight);
 
         // 3. Dibujar piezas aliadas
-        game.batch.begin();
-        game.batch.enableBlending();
         for (Blockers blocker : allyPieces) {
             blocker.draw(game.batch, 1.0f);
         }
-        game.batch.end();
 
         // 4. Dibujar jugador
-        game.batch.begin();
         player.draw(game.batch, 1.0f);
+
+        // Restaurar la matriz de transformación original
+        game.batch.setTransformMatrix(game.batch.getTransformMatrix().translate(-boardOffsetX, -boardOffsetY, 0));
         game.batch.end();
 
-        // Joypad
+        // Dibujar el joypad (fuera del offset del tablero)
         joypad.render(game.batch, game.textBatch);
     }
     @Override public void show() {}

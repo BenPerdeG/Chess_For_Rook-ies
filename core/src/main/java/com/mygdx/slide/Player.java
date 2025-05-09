@@ -117,20 +117,20 @@ public class Player extends GameEntity {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         float aspectRatio = (float)currentFrame.getWidth() / currentFrame.getHeight();
-        float drawWidth = TileMap.TILE_SIZE;
-        float drawHeight = TileMap.TILE_SIZE / aspectRatio;
+        float drawWidth = TileMap.TILE_SIZE * 0.8f; // Ajustar tamaño si es necesario
+        float drawHeight = drawWidth / aspectRatio; // Mantener proporción
 
+        // Calcular posición centrada
+        float centerX = position.x * TileMap.TILE_SIZE + TileMap.TILE_SIZE / 2f;
+        float centerY = position.y * TileMap.TILE_SIZE + TileMap.TILE_SIZE / 2f;
+
+        // Dibujar desde el centro del sprite
         batch.draw(currentFrame,
-            position.x * TileMap.TILE_SIZE,
-            position.y * TileMap.TILE_SIZE + (TileMap.TILE_SIZE - drawHeight)/2,
+            centerX - drawWidth / 2f,  // X: centro - mitad del ancho
+            centerY - drawHeight / 2f, // Y: centro - mitad del alto
             drawWidth,
-            drawHeight,
-            0, 0,
-            currentFrame.getWidth(),
-            currentFrame.getHeight(),
-            false, true);
+            drawHeight);
     }
-
     public Vector2 getPosition() {
         return position;
     }

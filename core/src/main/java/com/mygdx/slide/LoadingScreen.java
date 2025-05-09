@@ -46,6 +46,7 @@ public class LoadingScreen implements Screen {
         manager.load("gui/pointUp.png", Texture.class);
         manager.load("gui/Pause-off.png", Texture.class);
         manager.load("gui/Pause-on.png", Texture.class);
+
         manager.load("Piezas/B_Pawn.png",Texture.class);
         manager.load("Piezas/B_Rook.png",Texture.class);
         manager.load("Piezas/W_King.png",Texture.class);
