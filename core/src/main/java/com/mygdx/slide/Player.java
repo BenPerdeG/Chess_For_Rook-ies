@@ -117,17 +117,15 @@ public class Player extends GameEntity {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         float aspectRatio = (float)currentFrame.getWidth() / currentFrame.getHeight();
-        float drawWidth = TileMap.TILE_SIZE * 0.8f; // Ajustar tamaño si es necesario
-        float drawHeight = drawWidth / aspectRatio; // Mantener proporción
+        float drawWidth = TileMap.TILE_SIZE * 0.9f;
+        float drawHeight = drawWidth / aspectRatio;
 
-        // Calcular posición centrada
-        float centerX = position.x * TileMap.TILE_SIZE + TileMap.TILE_SIZE / 2f;
-        float centerY = position.y * TileMap.TILE_SIZE + TileMap.TILE_SIZE / 2f;
+        // Ajuste similar para la torre
+        float offsetY = (TileMap.TILE_SIZE - drawHeight) * 1.2f;
 
-        // Dibujar desde el centro del sprite
         batch.draw(currentFrame,
-            centerX - drawWidth / 2f,  // X: centro - mitad del ancho
-            centerY - drawHeight / 2f, // Y: centro - mitad del alto
+            position.x * TileMap.TILE_SIZE + (TileMap.TILE_SIZE - drawWidth) / 2f,
+            position.y * TileMap.TILE_SIZE + offsetY, // Ajuste vertical
             drawWidth,
             drawHeight);
     }
