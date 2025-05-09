@@ -10,7 +10,7 @@
       image_off: "gui/Pause-off.png"
     },
     {
-      x: 490
+      x: 510
       y: 360
       width: 80
       height: 80,
@@ -19,7 +19,7 @@
       image_off: "gui/pointLeft.png"
     },
     {
-      x: 650
+      x: 670
       y: 360
       width: 80
       height: 80
@@ -28,7 +28,7 @@
       image_off: "gui/pointRight.png"
     },
     {
-      x: 570
+      x: 590
       y: 260
       width: 80
       height: 80
@@ -37,7 +37,7 @@
       image_off: "gui/pointUp.png"
     }
     {
-      x: 570
+      x: 590
       y: 360
       width: 80
       height: 80

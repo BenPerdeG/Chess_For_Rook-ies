@@ -22,15 +22,16 @@ public class Blockers extends GameEntity {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.begin();
         batch.draw(texture,
             position.x * TileMap.TILE_SIZE,
             position.y * TileMap.TILE_SIZE,
             TileMap.TILE_SIZE,
-            TileMap.TILE_SIZE);
-        batch.end();
+            TileMap.TILE_SIZE,
+            0, 0,
+            texture.getWidth(),
+            texture.getHeight(),
+            false, true);
     }
-
     public Vector2 getPosition() {
         return position;
     }

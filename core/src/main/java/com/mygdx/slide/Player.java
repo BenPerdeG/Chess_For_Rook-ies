@@ -120,9 +120,12 @@ public class Player extends GameEntity {
             position.x * TileMap.TILE_SIZE,
             position.y * TileMap.TILE_SIZE,
             TileMap.TILE_SIZE,
-            TileMap.TILE_SIZE);
+            TileMap.TILE_SIZE,
+            0, 0,
+            currentFrame.getWidth(),
+            currentFrame.getHeight(),
+            false, true); // flipY = true
     }
-
     // Métodos auxiliares para colisiones
     public Vector2 getPosition() {
         return position;

@@ -37,6 +37,34 @@ public class LevelSelect implements Screen {
         if(levelSelect.consumeRelease("Nivel_1")) {
             game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level1.json")));
         }
+        if(levelSelect.consumeRelease("Nivel_2")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level2.json")));
+        }
+        if(levelSelect.consumeRelease("Nivel_3")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level3.json")));
+        }
+        if(levelSelect.consumeRelease("Nivel_4")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level4.json")));
+        }
+        if(levelSelect.consumeRelease("Nivel_5")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level5.json")));
+        }
+        if(levelSelect.consumeRelease("Nivel_6")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level6.json")));
+        }
+        if(levelSelect.consumeRelease("Nivel_7")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level7.json")));
+        }
+        if(levelSelect.consumeRelease("Nivel_8")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level8.json")));
+        }
+        if(levelSelect.consumeRelease("Nivel_9")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level9.json")));
+        }
+        if(levelSelect.consumeRelease("Nivel_10")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level10.json")));
+        }
+
 
     }
 

@@ -59,7 +59,7 @@ public class Level implements Screen {
     private Texture loadTexture(String path) {
         if (!game.manager.isLoaded(path)) {
             Gdx.app.error("Level", "Textura no cargada: " + path);
-            return new Texture("fallback.png"); // Asegúrate de incluir esta textura
+            return new Texture("fallback.png");
         }
         return game.manager.get(path, Texture.class);
     }
@@ -72,10 +72,6 @@ public class Level implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        for (Blockers blocker : allyPieces) {
-            blocker.draw(game.batch, 1.0f);
-        }
 
         update(delta);
         draw();
@@ -107,12 +103,20 @@ public class Level implements Screen {
             }
         }
 
+        for (Blockers blocker : allyPieces) {
+            blocker.draw(game.batch, 1.0f);
+        }
+
         player.draw(game.batch, 1.0f);
         game.batch.draw(kingTexture,
             nivel.getKingX() * TILE_SIZE,
             nivel.getKingY() * TILE_SIZE,
             TILE_SIZE,
-            TILE_SIZE);
+            TILE_SIZE,
+            0, 0,
+            kingTexture.getWidth(),
+            kingTexture.getHeight(),
+            false, true); // Invertir verticalmente
         game.batch.end();
 
         joypad.render(game.batch, game.textBatch);
