@@ -10,28 +10,33 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.slide.jsonloaders.LevelLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Level implements Screen {
     Chess game;
     LevelLayout nivel;
     TileMap tileMap;
     Player player;
     ButtonLayout joypad;
-
+    private List<Blockers> allyPieces;
     // Texturas
     Texture lightTile;
     Texture darkTile;
     Texture wallTile;
+    private Texture kingTexture;
 
     public Level(Chess game, LevelLayout nivel) {
         this.game = game;
         this.nivel = nivel;
+
 
         // Inicializar el tilemap
         tileMap = new TileMap(game.manager, game.batch);
         tileMap.loadFromLevel(nivel);
 
         // Crear al jugador
-        player = new Player(game.manager);
+        player = new Player(game.manager, this);
         player.setMap(tileMap);
 
         // Configurar controles
@@ -44,7 +49,22 @@ public class Level implements Screen {
         // Cargar texturas de ajedrez
         lightTile = game.manager.get("Tableros/light-tile.png", Texture.class);
         darkTile = game.manager.get("Tableros/dark-tile.png", Texture.class);
-        wallTile = game.manager.get("Tableros/wall-tile.png", Texture.class);
+
+        allyPieces = new ArrayList<>();
+
+        // Cargar piezas aliadas (valor 1 en el tileMap)
+        for(int y = 0; y < 8; y++) {
+            for(int x = 0; x < 8; x++) {
+                if(nivel.getTileMap()[y][x] == 1) {
+                    allyPieces.add(new Blockers(game.manager, "Piezas/B_Pawn.png", x, y));
+                }
+            }
+        }
+
+        kingTexture = game.manager.get("Piezas/W_King.png", Texture.class);
+    }
+    public List<Blockers> getAllyPieces() {
+        return allyPieces;
     }
 
     @Override
@@ -52,6 +72,9 @@ public class Level implements Screen {
         // Limpiar pantalla
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        for(Blockers blocker : allyPieces) {
+            blocker.draw(game.batch, 1.0f);
+        }
 
         // Actualizar lógica
         update(delta);
@@ -91,7 +114,11 @@ public class Level implements Screen {
 
         // Dibujar al jugador
         player.draw(game.batch, 1.0f);
-
+        game.batch.draw(kingTexture,
+            nivel.getKingX() * TILE_SIZE,
+            nivel.getKingY() * TILE_SIZE,
+            TILE_SIZE,
+            TILE_SIZE);
         game.batch.end();
 
         // Dibujar UI/controles

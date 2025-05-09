@@ -26,7 +26,6 @@ public class LoadingScreen implements Screen {
         // Tableros
         manager.load("Tableros/light-tile.png", Texture.class);
         manager.load("Tableros/dark-tile.png", Texture.class);
-        manager.load("Tableros/wall-tile.png", Texture.class);
 
         // Background image
         manager.load("libgdx.png", Texture.class);

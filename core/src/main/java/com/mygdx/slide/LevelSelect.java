@@ -2,6 +2,7 @@ package com.mygdx.slide;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.slide.jsonloaders.LevelJsonLoader;
 
 public class LevelSelect implements Screen {
     Chess game;
@@ -33,11 +34,8 @@ public class LevelSelect implements Screen {
 
 
 //        // Start the game!
-        if(levelSelect.consumeRelease("Start"))
-        {
-
-            game.setScreen(new LevelSelect(game));
-            this.dispose();
+        if(levelSelect.consumeRelease("Nivel_1")) {
+            game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level1.json")));
         }
 
     }

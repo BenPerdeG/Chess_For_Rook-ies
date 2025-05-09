@@ -17,10 +17,12 @@ public class Player extends GameEntity {
     private Vector2 targetPosition;
     private State state;
     private float slideSpeed = 10f; // Velocidad de deslizamiento
+    private Level currentLevel;
 
-    public Player(AssetManager manager) {
+    public Player(AssetManager manager,  Level level) {
         this.manager = manager;
-        this.currentFrame = manager.get("Piezas/W_Rook.png", Texture.class);
+        this.currentLevel = level;
+        this.currentFrame = manager.get("Piezas/B_Rook.png", Texture.class);
         this.position = new Vector2();
         this.targetPosition = new Vector2();
         this.state = State.IDLE;
@@ -49,45 +51,51 @@ public class Player extends GameEntity {
 
     private void handleInput() {
         if(joypad.consumePush("Up")) {
-            startSlide(0, -1); // Arriba (eje Y invertido en LibGDX)
+            startSlide(0, 1); // Y aumenta hacia arriba en coordenadas de pantalla
         }
         else if(joypad.consumePush("Down")) {
-            startSlide(0, 1);
+            startSlide(0, -1); // Y disminuye hacia abajo
         }
         else if(joypad.consumePush("Left")) {
-            startSlide(-1, 0);
+            startSlide(-1, 0); // X disminuye hacia izquierda
         }
         else if(joypad.consumePush("Right")) {
-            startSlide(1, 0);
+            startSlide(1, 0); // X aumenta hacia derecha
         }
     }
 
-    // En Player.java
+
     private void startSlide(int dirX, int dirY) {
         if(state != State.IDLE) return;
 
-        // Calcular posición de destino
+
         int newX = (int)position.x;
         int newY = (int)position.y;
 
-        // Buscar hasta el próximo obstáculo
         while(true) {
             int nextX = newX + dirX;
             int nextY = newY + dirY;
 
-            // Verificar colisión con bordes, obstáculos o piezas aliadas
-            if(!map.isWalkable(nextX, nextY) ||
-                map.hasAllyPiece(nextX, nextY)) { // Necesitarás implementar este método
+            // Verificar límites del tablero
+            if(nextX < 0 || nextX >= 8 || nextY < 0 || nextY >= 8) {
                 break;
             }
 
-            // Verificar si encontramos al rey enemigo (victoria)
+            // Verificar colisiones con piezas aliadas
+            boolean blocked = false;
+            for(Blockers blocker : currentLevel.getAllyPieces()) {
+                if((int)blocker.getPosition().x == nextX &&
+                    (int)blocker.getPosition().y == nextY) {
+                    blocked = true;
+                    break;
+                }
+            }
+            if(blocked) break;
 
             newX = nextX;
             newY = nextY;
         }
 
-        // Si hay movimiento posible
         if(newX != position.x || newY != position.y) {
             targetPosition.set(newX, newY);
             state = State.SLIDING;
