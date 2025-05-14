@@ -20,11 +20,12 @@ public class Level implements Screen {
     Player player;
     ButtonLayout joypad;
     private List<Blockers> allyPieces;
-    // Texturas
+
     Texture lightTile;
     Texture darkTile;
     Texture wallTile;
     private Texture kingTexture;
+    private boolean isPaused = false;
 
     public Level(Chess game, LevelLayout nivel) {
         this.game = game;
@@ -70,16 +71,30 @@ public class Level implements Screen {
 
     @Override
     public void render(float delta) {
+
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        update(delta);
+
+        if (!isPaused) {
+            update(delta);
+        }
+
+
         draw();
     }
 
     private void update(float delta) {
+
+        if (joypad.consumeRelease("Pause")) {
+            Gdx.app.log("Level", "Botón de pausa presionado");
+            isPaused = true;
+            game.setScreen(new PauseMenuScreen(game, this));
+            return;
+        }
         player.act(delta);
         joypad.update();
+
 
         if (player.getPosition().epsilonEquals(new Vector2(nivel.getKingX(), nivel.getKingY()), 0.1f)) {
             game.levelCompleted();
@@ -87,18 +102,14 @@ public class Level implements Screen {
     }
 
     private void draw() {
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // Dibujar tablero
+        final float boardOffsetX = 100f;
+        final float boardOffsetY = 50f;
 
-        // Definir offset para mover el tablero
-        final float boardOffsetX = 100f; // Mover a la derecha
-        final float boardOffsetY = 50f;  // Mover hacia abajo
-
-        // Guardar la matriz de transformación original
         game.batch.begin();
         game.batch.setTransformMatrix(game.batch.getTransformMatrix().translate(boardOffsetX, boardOffsetY, 0));
 
-        // 1. Dibujar tablero (ahora se dibujará con el offset aplicado)
+
         for (int y = 0; y < tileMap.height; y++) {
             for (int x = 0; x < tileMap.width; x++) {
                 boolean isLight = (x + y) % 2 == 0;
@@ -109,8 +120,8 @@ public class Level implements Screen {
             }
         }
 
-        // 2. Dibujar rey (objetivo)
-        float kingAspect = (float)kingTexture.getWidth() / kingTexture.getHeight();
+
+        float kingAspect = (float) kingTexture.getWidth() / kingTexture.getHeight();
         float kingHeight = TileMap.TILE_SIZE / kingAspect;
         game.batch.draw(kingTexture,
             nivel.getKingX() * TILE_SIZE,
@@ -118,27 +129,45 @@ public class Level implements Screen {
             TileMap.TILE_SIZE,
             kingHeight);
 
-        // 3. Dibujar piezas aliadas
+
         for (Blockers blocker : allyPieces) {
             blocker.draw(game.batch, 1.0f);
         }
 
-        // 4. Dibujar jugador
+
         player.draw(game.batch, 1.0f);
 
-        // Restaurar la matriz de transformación original
         game.batch.setTransformMatrix(game.batch.getTransformMatrix().translate(-boardOffsetX, -boardOffsetY, 0));
         game.batch.end();
 
-        // Dibujar el joypad (fuera del offset del tablero)
         joypad.render(game.batch, game.textBatch);
     }
-    @Override public void show() {}
-    @Override public void resize(int width, int height) {}
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
-    @Override public void dispose() {
+
+    @Override
+    public void show() {
+        isPaused = false;
+    }
+
+    @Override
+    public void resize(int width, int height) {
+    }
+
+    @Override
+    public void pause() {
+        isPaused = true;
+    }
+
+    @Override
+    public void resume() {
+        isPaused = false;
+    }
+
+    @Override
+    public void hide() {
+    }
+
+    @Override
+    public void dispose() {
         lightTile.dispose();
         darkTile.dispose();
         wallTile.dispose();

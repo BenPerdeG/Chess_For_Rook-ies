@@ -30,6 +30,7 @@ public class LoadingScreen implements Screen {
         // Background image
         manager.load("libgdx.png", Texture.class);
         manager.load("BG.png", Texture.class);
+        manager.load("white.png", Texture.class);
         manager.load("fallback.png", Texture.class);
 
         for(int i =1; i<11;i++){
