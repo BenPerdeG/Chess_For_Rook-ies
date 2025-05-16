@@ -21,7 +21,7 @@ public class LoadingScreen implements Screen {
         this.game = game;
         AssetManager  manager = game.manager;
 
-        // Add assets for loading
+
 
         // Tableros
         manager.load("Tableros/light-tile.png", Texture.class);

@@ -20,6 +20,7 @@ public class Level implements Screen {
     Player player;
     ButtonLayout joypad;
     private List<Blockers> allyPieces;
+    private int movimientos;
 
     Texture lightTile;
     Texture darkTile;
@@ -31,6 +32,7 @@ public class Level implements Screen {
         this.game = game;
         this.nivel = nivel;
 
+        movimientos = 0;
         tileMap = new TileMap(game.manager, game.batch);
         tileMap.loadFromLevel(nivel);
 
@@ -138,9 +140,15 @@ public class Level implements Screen {
         player.draw(game.batch, 1.0f);
 
         game.batch.setTransformMatrix(game.batch.getTransformMatrix().translate(-boardOffsetX, -boardOffsetY, 0));
+
         game.batch.end();
 
         joypad.render(game.batch, game.textBatch);
+
+        game.textBatch.setProjectionMatrix(game.textCamera.combined);
+        game.textBatch.begin();
+        game.mediumFont.draw(game.textBatch, "Movimientos: " + movimientos, 20, 460);
+        game.textBatch.end();
     }
 
     @Override
@@ -172,5 +180,13 @@ public class Level implements Screen {
         darkTile.dispose();
         wallTile.dispose();
         kingTexture.dispose();
+    }
+
+    public void setMovimientos(int movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    public int getMovimientos() {
+        return movimientos;
     }
 }

@@ -19,6 +19,7 @@ public class Chess extends Game {
     AssetManager manager;
     public OrthographicCamera camera, textCamera;
     public int currentLevel = 1;
+    public int playingLevel = 1;
     public static final int TOTAL_LEVELS = 10;
     @Override
     public void create() {
@@ -77,12 +78,21 @@ public class Chess extends Game {
         batch.dispose();
     }
     public void levelCompleted() {
-        currentLevel++;
-        if(currentLevel <= TOTAL_LEVELS) {
-            LevelLayout nextLevel = LevelJsonLoader.loadLevel("level" + currentLevel + ".json");
-            setScreen(new Level(this, nextLevel));
+        int nextLevel = playingLevel + 1;
+
+
+        if (nextLevel > currentLevel) {
+            currentLevel = nextLevel;
+        }
+
+        if (nextLevel <= TOTAL_LEVELS) {
+            LevelLayout nextLayout = LevelJsonLoader.loadLevel("level" + nextLevel + ".json");
+            playingLevel = nextLevel;
+            setScreen(new Level(this, nextLayout));
         } else {
             setScreen(new VictoryScreen(this));
         }
     }
+
+
 }

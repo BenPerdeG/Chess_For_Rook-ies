@@ -37,6 +37,7 @@ public class LevelSelect implements Screen {
         for (int i = 1; i <= 10; i++) {
             String levelName = "Nivel_" + i;
             if (levelSelect.consumeRelease(levelName)) {
+                game.playingLevel=i;
                 game.setScreen(new Level(game, LevelJsonLoader.loadLevel("level" + i + ".json")));
                 break;
             }

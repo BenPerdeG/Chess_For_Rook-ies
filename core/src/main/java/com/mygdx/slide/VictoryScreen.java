@@ -28,7 +28,7 @@ public class VictoryScreen implements Screen, InputProcessor {
 
 
         game.textBatch.begin();
-        game.bigFont.draw(game.textBatch, "¡VICTORIA!", 300, 240);
+        game.bigFont.draw(game.textBatch, "¡VICTORIA!", 225, 240);
         game.textBatch.end();
     }
 

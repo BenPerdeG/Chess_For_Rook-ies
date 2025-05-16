@@ -16,7 +16,7 @@ public class Player extends GameEntity {
     private Vector2 position;
     private Vector2 targetPosition;
     private State state;
-    private float slideSpeed = 10f; // Velocidad de deslizamiento
+    private float slideSpeed = 10f;
     private Level currentLevel;
 
     public Player(AssetManager manager,  Level level) {
@@ -51,17 +51,22 @@ public class Player extends GameEntity {
 
     private void handleInput() {
         if(joypad.consumePush("Up")) {
-            startSlide(0, 1); // Y aumenta hacia arriba en coordenadas de pantalla
+            startSlide(0, 1);
+            currentLevel.setMovimientos(currentLevel.getMovimientos()+1);
         }
         else if(joypad.consumePush("Down")) {
-            startSlide(0, -1); // Y disminuye hacia abajo
+            startSlide(0, -1);
+            currentLevel.setMovimientos(currentLevel.getMovimientos()+1);
         }
         else if(joypad.consumePush("Left")) {
-            startSlide(-1, 0); // X disminuye hacia izquierda
+            startSlide(-1, 0);
+            currentLevel.setMovimientos(currentLevel.getMovimientos()+1);
         }
         else if(joypad.consumePush("Right")) {
-            startSlide(1, 0); // X aumenta hacia derecha
+            startSlide(1, 0);
+            currentLevel.setMovimientos(currentLevel.getMovimientos()+1);
         }
+
     }
 
 
